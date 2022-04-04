@@ -77,7 +77,7 @@ func TestMakeAddPostHandler(t *testing.T) {
 			defer ts.Close()
 
 			if tt.mock != nil {
-				mock.EXPECT().CreateRecord(gomock.Any(), gomock.Any()).Return(tt.mock.err)
+				mock.EXPECT().CreatePost(gomock.Any(), gomock.Any()).Return(tt.mock.err)
 			}
 
 			res, err := http.Post(ts.URL, libhttp.ContentTypeJson, strings.NewReader(tt.req))

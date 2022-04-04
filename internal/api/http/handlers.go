@@ -43,7 +43,7 @@ func MakeAddPostHandler(blogSvc service.BlogService) http.HandlerFunc {
 			return
 		}
 
-		err = blogSvc.CreateRecord(r.Context(), record)
+		err = blogSvc.CreatePost(r.Context(), record)
 		if err != nil {
 			libhttp.SendError(w, http.StatusBadRequest, err)
 			return
@@ -63,7 +63,7 @@ type GetPostResponse struct {
 
 func MakeGetPostsHandler(blogSvc service.BlogService) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		records, err := blogSvc.GetAllRecords(r.Context())
+		records, err := blogSvc.GetAllPosts(r.Context())
 		if err != nil {
 			libhttp.SendError(w, http.StatusInternalServerError, err)
 			return
